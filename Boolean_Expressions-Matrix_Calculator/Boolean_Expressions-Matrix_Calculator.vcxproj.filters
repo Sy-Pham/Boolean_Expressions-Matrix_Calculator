@@ -21,6 +21,18 @@
     <ClInclude Include="Matrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\Dictionary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\Input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\ProcessCharacters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\Source.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MathVector.cpp">
@@ -33,6 +45,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\Dictionary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\ProcessCharacters.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
