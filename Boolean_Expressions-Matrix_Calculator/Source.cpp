@@ -1,4 +1,4 @@
-#include "Source.h"
+#include "source.h"
 
 
 //Finding the position where element of dictionay has the determined key 
@@ -13,8 +13,8 @@ int find(vector<Dictionary<int, string>> groups, int key) {
 }
 
 //importing string s into array of string marked
-void add(vector<string>& marked, string s) {
-
+void add(vector<string> &marked, string s) {
+	
 	//find whether s has remained in marked
 	for (int i = 0; i < marked.size(); i++) {
 		if (marked[i] == s) {
@@ -35,7 +35,7 @@ void print(vector<Dictionary<int, string>> groups) {
 		vector<string> value = groups[i].getValue();
 		for (int i = 0; i < value.size(); i++)
 			cout << value[i] << " ";//elements of value
-		cout << endl;
+		cout << endl;	
 	}
 	cout << endl;
 }
@@ -49,9 +49,9 @@ vector<string> diffence(vector<Dictionary<int, string>> tmp, vector<string> mark
 		for (int j = 0; j < v.size(); j++) {
 			int count = 0;
 			for (int k = 0; k < marked.size(); k++) {
-				if (v[j] == marked[k]) count++;
+ 				if (v[j] == marked[k]) count++;
 				if (count) break;
-			}
+		}
 			//if array tmp does not contain this element belonged to marked, it will added into array result
 			if (!count) res.push_back(v[j]);
 		}
@@ -62,7 +62,7 @@ vector<string> diffence(vector<Dictionary<int, string>> tmp, vector<string> mark
 
 // Creating array has all of element both array : all and unmarked
 // The elements belonging to both apprear one time
-void union_(vector<string>& all, vector<string> unmarked) {
+void union_(vector<string> &all,vector<string> unmarked) {
 
 	if (all.size() == 0) {
 		all = unmarked;
@@ -95,7 +95,7 @@ vector<string> findEssential(vector<Dictionary<int, string>> chart) {
 			string v = chart[i].getValue()[0];
 			int count = 0;
 			for (int j = 0; j < res.size(); j++) {
-				if (res[j] == v)
+				if (res[j] == v) 
 					count++;
 				if (count) break;//do nothing because it have added before
 			}
@@ -108,26 +108,26 @@ vector<string> findEssential(vector<Dictionary<int, string>> chart) {
 }
 
 //all elements has key what is the same as transformed from essence will be eleminate from array chart
-void remove_(vector<Dictionary<int, string>>& chart, vector<string> essence) {
+void remove_(vector<Dictionary<int, string>>&chart, vector<string> essence) {
 	for (int i = 0; i < essence.size(); i++) {
 		vector<int > k = findMinTerms(essence[i]);//transforming string into int
 		for (int j = 0; j < k.size(); j++) {
 			int key = k[j];
 			int idx = find(chart, key);//finding
-			if (idx != -1)//if finding successfully, it is removed
+			if(idx!=-1)//if finding successfully, it is removed
 				chart.erase(chart.begin() + idx);
-		}
+		}	
 	}
 }
-
+ 
 //finding the string that has the appearance is the best popular in chart
 //value of res is the number of appearance of key
-int findcover(vector<Dictionary<int, string>> chart, Dictionary<string, int>& res) {
+int findcover(vector<Dictionary<int, string>> chart, Dictionary<string,int> &res) {
 	int d = chart.size();
 	string s = chart[0].getValue()[0];
 	int max = 1;// the number of appearance
 	int idx = 0;//index
-	int count = 1;
+	int count=1;
 	//Selection Algorithm
 	for (int i = 0; i < d - 1; i++) {
 		vector<string> v1 = chart[i].getValue();
@@ -150,7 +150,7 @@ int findcover(vector<Dictionary<int, string>> chart, Dictionary<string, int>& re
 			}
 		}
 	}
-
+	
 	Dictionary<string, int> tmp(s, max);
 	res = tmp;
 
@@ -159,7 +159,7 @@ int findcover(vector<Dictionary<int, string>> chart, Dictionary<string, int>& re
 
 //Finding string has shortest special length from elements of value 
 //idx is index of the element in chart
-vector<string> findminlen(vector<Dictionary<int, string>> chart, int idx) {
+vector<string> findminlen(vector<Dictionary<int, string>> chart, int idx){
 	vector<string> res;
 	vector<string> value = chart[idx].getValue();
 	int min = minlen(value[0]);//minlen() is function to identify the special length
@@ -181,7 +181,7 @@ vector<string> findminlen(vector<Dictionary<int, string>> chart, int idx) {
 
 //Finding the most appropriate elements to cover all the rest of algorithm
 //size is size of array cover
-vector<vector<string>> recursiveCover(vector<vector<string>> cover, int size) {
+vector<vector<string>> recursiveCover(vector<vector<string>> cover,int size) {
 	vector<vector<string>> res;
 	if (size == 1)//one element
 	{
@@ -193,10 +193,10 @@ vector<vector<string>> recursiveCover(vector<vector<string>> cover, int size) {
 			tmp.push_back(cover[size - 1][i]);
 			res.push_back(tmp);
 		}
-
+		
 		return res;
 	}
-
+	
 	res = recursiveCover(cover, size - 1);
 	int sz = res.size();
 	//the existing elements will added the new factor
@@ -209,7 +209,7 @@ vector<vector<string>> recursiveCover(vector<vector<string>> cover, int size) {
 		}
 	}
 	//remove all the old elements
-	res.erase(res.begin(), res.begin() + sz);
+	res.erase(res.begin(),res.begin() + sz);
 
 	return res;
 }
@@ -222,7 +222,7 @@ vector<vector<string>> finalresult(vector<string> essence, vector<vector<string>
 		for (int j = 0; j < essence.size(); j++) {
 			res[i].push_back(essence[j]);//these elements will be combined all of elements of essence
 		}
-
+	
 	}
 
 	return res;
