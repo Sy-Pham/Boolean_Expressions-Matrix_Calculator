@@ -123,13 +123,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\Dictionary.h" />
+    <ClInclude Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\Input.h" />
+    <ClInclude Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\ProcessCharacters.h" />
+    <ClInclude Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\Source.h" />
     <ClInclude Include="MathVector.h" />
     <ClInclude Include="Matrix.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\Dictionary.cpp" />
+    <ClCompile Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\Input.cpp" />
+    <ClCompile Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\Main.cpp" />
+    <ClCompile Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\ProcessCharacters.cpp" />
+    <ClCompile Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\Source.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathVector.cpp" />
     <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
