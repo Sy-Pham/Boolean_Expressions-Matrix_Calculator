@@ -123,7 +123,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\Dictionary.h" />
     <ClInclude Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\Input.h" />
     <ClInclude Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\ProcessCharacters.h" />
     <ClInclude Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\Source.h" />
