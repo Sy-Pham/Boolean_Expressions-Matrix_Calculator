@@ -14,7 +14,7 @@ class Dictionary
 	k key;
 	vector<v> value;
 public:
-
+	
 	Dictionary();
 	Dictionary(k, v);
 	~Dictionary();
