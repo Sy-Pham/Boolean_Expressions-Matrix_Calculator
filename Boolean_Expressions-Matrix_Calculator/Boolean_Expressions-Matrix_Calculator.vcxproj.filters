@@ -30,6 +30,9 @@
     <ClInclude Include="E:\Visual Studio 2017\Assignment\Data Structure and Algorithm\Project\Quine_McCluskey\Quine_McCluskey\Quine_McCluskey\Source.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Dictionary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MathVector.cpp">
