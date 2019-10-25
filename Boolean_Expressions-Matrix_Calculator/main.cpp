@@ -1,7 +1,7 @@
 #include "MathVector.h"
 #include "Matrix.h"
 
-void main() {
+void main1() {
 	/*vector<double> val = { 1, 2, 3.5, 4.6 };
 	vector<double> val2 = { 10.1, 10.5, 4.5, 6 };
 	MathVector v(val);
