@@ -19,7 +19,7 @@ void firstGroup(vector<int> minterms, vector<Dictionary<int,string>> &groups, in
 		}
 	}
 
-	//Primary group printing starts
+		//Primary group printing starts
 	sort(groups.begin(), groups.end());
 }
 
@@ -66,11 +66,10 @@ vector<string> appropriateGroups(vector<Dictionary<int, string>>& groups) {
 			m += 1;
 		}
 
-		vector<string> unmarked = diffence(tmp, marked);
+		vector<string> unmarked = diffence(tmp, marked);//find elements only belond to tmp not belong to marked
 
-		union_(all, unmarked);
+		union_(all, unmarked);//find elements belong to unmarked not belong to all and add them into all
 
-		//print(groups);
 		if (flagStop) break;//there is one groups, nothing to do 
 	}
 
@@ -79,7 +78,7 @@ vector<string> appropriateGroups(vector<Dictionary<int, string>>& groups) {
 
 vector<Dictionary<int, string>> processChart(vector<string> all) {
 	vector<Dictionary<int, string>> chart;
-	for (int i = 0; i < all.size(); i++) {
+	for (int i = 0; i < all.size(); i++) { 
 		string value = all[i];
 		vector<int> merge_minterms = findMinTerms(value);//array of key
 		for (int j = 0; j < merge_minterms.size(); j++) {//adding these key

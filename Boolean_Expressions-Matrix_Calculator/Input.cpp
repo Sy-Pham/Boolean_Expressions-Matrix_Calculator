@@ -5,10 +5,10 @@ void input_(string& in, int& var) {//var is the maximum number of variables
 
 	string s = "Bieu thuc nhap bi loi";
 	cout << "Nhap so luong bien : ";
-	cin >> var;
+	cin >> var;//Import number of variables
 	cout << "Nhap bieu thuc F (tu don bat dau tu A. VD: AB' + CD): ";
 	cin.ignore();
-	getline(cin, in);
+	getline(cin, in);//import formula
 	cout << endl;
 
 	vector<char> a;
