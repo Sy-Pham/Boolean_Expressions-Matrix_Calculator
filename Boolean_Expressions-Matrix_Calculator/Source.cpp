@@ -5,8 +5,8 @@
 int find(vector<Dictionary<int, string>> groups, int key) {
 	for (int i = 0; i < groups.size(); i++)
 	{
-		int j = groups[i].getKey();
-		if (j == key) return i;
+		int j = groups[i].getKey();//get value of key from elements of array
+		if (j == key) return i;//compare
 	}
 	//Finding nothing
 	return -1;
@@ -25,9 +25,7 @@ void add(vector<string> &marked, string s) {
 	//if s does not belong marked, addition will be implement
 	marked.push_back(s);
 	return;
-
 }
-
 //Export all elements of array out the screen
 void print(vector<Dictionary<int, string>> groups) {
 	for (int i = 0; i < groups.size(); i++) {
@@ -50,9 +48,9 @@ vector<string> diffence(vector<Dictionary<int, string>> tmp, vector<string> mark
 			int count = 0;
 			for (int k = 0; k < marked.size(); k++) {
  				if (v[j] == marked[k]) count++;
-				if (count) break;
+				if (count) break;//element have been existing
 		}
-			//if array tmp does not contain this element belonged to marked, it will added into array result
+			//if array tmp does not contain those element belonged to marked, it will added into array result
 			if (!count) res.push_back(v[j]);
 		}
 	}
