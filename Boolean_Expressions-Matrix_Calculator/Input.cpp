@@ -32,4 +32,47 @@ void add_(vector<int>& a, int x) {
 	a.push_back(x);
 }
 
+// input: an empty vector
+// output: void
+// usage: get the input vector
+void input(vector<double>& in) {
+	int dimension;
+
+	cout << "Nhap so chieu cua vector: ";
+	cin >> dimension;
+	cout << "Nhap vector: ";
+
+	for (int i = 0; i < dimension; i++) {
+		double temp;
+		cin >> temp;
+		in.push_back(temp);
+	}
+}
+
+// input: en empty 2d vector
+// output: void
+// usage: get the input matrix
+void input(vector<vector<double>>& in) {
+	int dimensionX, dimensionY;
+
+	cout << "Nhap kich co cua ma tran:\n";
+	cout << "So hang: ";
+	cin >> dimensionX;
+	cout << "So cot: ";
+	cin >> dimensionY;
+	cout << "Nhap ma tran:\n";
+	vector<double> tempVector(dimensionY, 0);
+	in = vector<vector<double>>(dimensionX, tempVector);
+
+	for (int i = 0; i < dimensionX; i++) {
+		for (int j = 0; j < dimensionY; j++) {
+			cout << "Nhap gia tri cho phan tu [" << i << "][" << j << "]: ";
+			double temp;
+			cin >> temp;
+
+			in[i][j] = temp;
+		}
+	}
+}
+
 

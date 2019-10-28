@@ -1,4 +1,6 @@
 #include "Matrix.h"
+#include <iostream>
+using namespace std;
 
 Matrix::Matrix() {
 	val = vector<vector<double>>({ {} });
@@ -38,14 +40,19 @@ double Matrix::determinant() {
 
 	// kiem tra ma tran vuong
 	if (rowSrc != colSrc) {
-		throw ("Khong the tinh dinh thuc vi ma tran khong vuong");
+		throw string("Khong the tinh dinh thuc vi ma tran khong vuong");
 	}
 
 	// thuat toan crout - ung dung LU decomposition - tham khao: Wikipedia
 	int i, j, k, n = rowSrc;
 	double sum = 0;
 
-	LUDecomposition(val, L, U);
+	try {
+		LUDecomposition(val, L, U);
+	}
+	catch (string e) {
+		cout << "Loi: " << e << endl;
+	}
 
 	// A = LU => det(A) = det(L) * det(U)
 	// ma det(U) = 1 vi duong cheo chinh cua U toan so 1
@@ -84,12 +91,12 @@ const Matrix Matrix::inverse() {
 
 	// kiem tra ma tran vuong
 	if (rowSrc != colSrc) {
-		throw ("Khong the tinh dinh thuc vi ma tran khong vuong");
+		throw string("Khong the tinh dinh thuc vi ma tran khong vuong");
 	}
 
 	// kiem tra ma tran co ton tai ma tran nghich dao khong
 	if ((this->determinant() == 0)) {
-		throw ("Ma tran khong co ma tran nghich dao");
+		throw string("Ma tran khong co ma tran nghich dao");
 	}
 
 	// i, j, k la cac bien dem, n la bien giu chieu dai canh cua ma tran vuong
@@ -153,7 +160,7 @@ const Matrix Matrix::multiply(const Matrix& other) {
 
 	// kiem tra dieu kien thuc hien duoc phep nhan hai ma tran
 	if (colSrc != rowOther) {
-		throw ("Khong the thuc hien phep nhan hai ma tran");
+		throw string("Khong the thuc hien phep nhan hai ma tran");
 	}
 
 	for (int i = 0; i < rowSrc; i++) {
@@ -183,7 +190,7 @@ int Matrix::rank() {
 	for (int i = rowSize - 1; i >= 0; i--) {
 		emptyRow = true;
 		for (int j = 0; j < colSize; j++) {
-			if (result[i][j] != 0) {
+			if (result[i][j] > (0.000000001)) {
 				emptyRow = false;
 				break;
 			}
@@ -198,7 +205,7 @@ int Matrix::rank() {
 	return rankValue;
 }
 
-const Matrix Matrix::solve(vector<vector<double>> augmentValue) {
+const Matrix Matrix::solve(vector<vector<double>>& augmentValue) {
 	Matrix coeffMatrix(*this);
 	Matrix result;
 	Matrix rightHandMatrix(augmentValue);
@@ -214,10 +221,10 @@ const Matrix Matrix::solve(vector<vector<double>> augmentValue) {
 	int augmentMatrixRank = augmentMatrix.rank();
 
 	if (coeffMatrixRank < augmentMatrixRank) {
-		throw "He phuong trinh da cho vo nghiem";
+		throw string("He phuong trinh da cho vo nghiem");
 	}
 	else if (coeffMatrixRank > augmentMatrixRank) {
-		throw "He phuong trinh da cho co vo so nghiem";
+		throw string("He phuong trinh da cho co vo so nghiem");
 	}
 	else {
 		result = coeffMatrix.inverse();
@@ -225,6 +232,33 @@ const Matrix Matrix::solve(vector<vector<double>> augmentValue) {
 	}
 
 	return result;
+}
+
+void Matrix::output() {
+	int dimensionX = val.size();
+	int dimensionY = val[0].size();
+
+	cout << "(";
+	for (int i = 0; i < dimensionX; i++) {
+		if (i == 0)
+			cout << " (";
+		else 
+			cout << "  (";
+
+		for (int j = 0; j < dimensionY; j++) {
+			if (j == (dimensionY - 1)) {
+				cout << val[i][j];
+				break;
+			}
+			cout << val[i][j] << ", ";
+		}
+
+		if (i == (dimensionX - 1))
+			cout << ") ";
+		else
+			cout << ")," << endl;
+	}
+	cout << ")";
 }
 
 void LUDecomposition(vector<vector<double>> A, vector<vector<double>> &L, vector<vector<double >> &U) {
@@ -263,7 +297,7 @@ void LUDecomposition(vector<vector<double>> A, vector<vector<double>> &L, vector
 				sum = sum + L[j][k] * U[k][i];
 			}
 			if (L[j][j] == 0) {
-				throw "error in crout algorithm";
+				throw string("Ma tran co dinh thuc bang 0");
 			}
 			U[j][i] = (A[j][i] - sum) / L[j][j];
 		}

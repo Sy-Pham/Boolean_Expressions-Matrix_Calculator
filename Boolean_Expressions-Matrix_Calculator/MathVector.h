@@ -12,5 +12,6 @@ public:
 	~MathVector();
 	MathVector& add(const MathVector&);
 	MathVector& multiply(double);
+	void output();
 };
 

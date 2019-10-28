@@ -1,4 +1,4 @@
-#include "source.h"
+#include "QuineMcCluskyUtilitiesFunc.h"
 
 
 //Finding the position where element of dictionay has the determined key 

@@ -1,4 +1,4 @@
 #pragma once
-#include "Source.h"
+#include "QuineMcCluskyUtilitiesFunc.h"
 
 void output(vector<vector<string>> finalResult);

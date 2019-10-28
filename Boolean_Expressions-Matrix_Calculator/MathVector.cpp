@@ -19,7 +19,7 @@ MathVector& MathVector::add(const MathVector& other) {
 
 	// so sanh chieu cua hai vector
 	if (sizeSrc != sizeOther) {
-		throw ("Hai vector khong co cung chieu");
+		throw string("Hai vector khong co cung chieu");
 	}
 	
 	// thuc hien phep cong vector
@@ -38,4 +38,18 @@ MathVector& MathVector::multiply(double scalar) {
 	}
 
 	return *this;
+}
+
+void MathVector::output() {
+	int size = val.size();
+
+	cout << "(";
+	for (int i = 0; i < size; i++) {
+		if (i == (size - 1)) {
+			cout << val[i];
+			break;
+		}
+		cout << val[i] << ", ";
+	}
+	cout << ")";
 }

@@ -20,7 +20,8 @@ public:
 	const Matrix inverse();
 	const Matrix multiply(const Matrix&);
 	int rank();
-	const Matrix solve(vector<vector<double>>);
+	const Matrix solve(vector<vector<double>>&);
+	void output();
 };
 
 void LUDecomposition(vector<vector<double>>, vector<vector<double>>&, vector<vector<double>>&);

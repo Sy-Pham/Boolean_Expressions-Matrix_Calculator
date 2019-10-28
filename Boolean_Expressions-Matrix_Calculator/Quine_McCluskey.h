@@ -1,5 +1,5 @@
 #pragma once
-#include "Source.h"
+#include "QuineMcCluskyUtilitiesFunc.h"
 
 void firstGroup(vector<int> minterms, vector<Dictionary<int, string>>& groups, int size);
 vector<string> appropriateGroups(vector<Dictionary<int, string>>& groups);
