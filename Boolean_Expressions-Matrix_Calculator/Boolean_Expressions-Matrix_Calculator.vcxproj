@@ -127,7 +127,9 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="MathVector.h" />
     <ClInclude Include="Matrix.h" />
+    <ClInclude Include="Output.h" />
     <ClInclude Include="ProcessCharacters.h" />
+    <ClInclude Include="Quine_McCluskey.h" />
     <ClInclude Include="Source.h" />
   </ItemGroup>
   <ItemGroup>
@@ -137,7 +139,9 @@
     <ClCompile Include="main_QuineMcCluskey.cpp" />
     <ClCompile Include="MathVector.cpp" />
     <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="Output.cpp" />
     <ClCompile Include="ProcessCharacters.cpp" />
+    <ClCompile Include="Quine_McCluskey.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

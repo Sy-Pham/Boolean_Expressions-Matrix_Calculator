@@ -115,7 +115,7 @@ int minlen(string s) {
 
 // Find all of number of decimal what are transformed from string s
 vector<int> dec_(string s, int var) {//Var is the maximum quantity of variable
-	char c = 65; // character A
+	char c = 65; // character A - character to estimate
 	char ch = 39;// character '
 	int idx = 0;
 	int l = len(s);
@@ -138,7 +138,7 @@ vector<int> dec_(string s, int var) {//Var is the maximum quantity of variable
 				str = str + '1';
 			idx++;
 		}
-		c++;
+		c++;//increse character estimator
 
 	}
 	//filling character '-' in the end of sequence of character to obtain the lenghth as variable's number of maximum
