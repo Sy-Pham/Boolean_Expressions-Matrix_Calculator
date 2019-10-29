@@ -1,7 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "ProcessCharacters.h"
 
-//transforming the number of decimal into binary
+
+//input: int x
+//output: string
+//usage: transforming the number of decimal into binary
 string bin(int x) {
 	char s[20];
 	_itoa(x, s, 2);
@@ -10,12 +13,16 @@ string bin(int x) {
 	return c;
 }
 
-// Evaluate the length of sequence of characters
+//input: string s
+//output: int
+//usage: Evaluate the length of sequence of characters
 int len(string s) {
 	return s.size();
 }
 
-//transforming the sequence of characters into decimal
+//input: string a
+//output: int
+//usage: transforming the sequence of characters into decimal
 int str(string a) {
 	int d = len(a);
 	int count = 0;
@@ -29,7 +36,9 @@ int str(string a) {
 	return count;
 }
 
-// Evaluating the quantity of character c contained in determined string s
+//input: string x, char c
+//output: int
+//usage: Evaluating the quantity of character c contained in determined string s
 int count(string x, char c) {
 	int count = 0;
 	for (int i = 0; i < len(x); i++)
@@ -38,8 +47,10 @@ int count(string x, char c) {
 	return count;
 }
 
-//Find the first position where character c belong to string s
-int findchar(string x, char c) {
+//input: string x, char c
+//output: int
+//usage: Find the first position where character c belong to string s
+int findChar(string x, char c) {
 	for (int i = 0; i < len(x); i++) {
 		if (x[i] == c) return i;
 	}
@@ -47,7 +58,9 @@ int findchar(string x, char c) {
 	return -1;
 }
 
-//filling number zero into the begin of the string s in order to fit the length of size
+//input: string s, int size
+//output: string
+//usage: filling number zero into the begin of the string s in order to fit the length of size
 string zeroFill(string s, int size) {
 	int d = len(s);
 	if (d >= size) return s;
@@ -59,6 +72,10 @@ string zeroFill(string s, int size) {
 
 	return s;
 }
+
+//input: string a, string b, int& index
+//output: bool
+//usage:
 //finding the first position string a has character what not belong string b if a is different from b
 // return true if a have only 1 character not belong b and ortherwise return false
 bool compare(string a, string b, int& index) {
@@ -78,7 +95,9 @@ bool compare(string a, string b, int& index) {
 	return true;
 }
 
-//Evaluating the length of x 
+//input: int x
+//output: int
+//usage: Evaluating the length of x 
 int len(int x) {
 	int count = 1;
 	while (x / 10 != 0)
@@ -90,7 +109,9 @@ int len(int x) {
 	return count;
 }
 
-//transforimg string s into sequence of characters of the Alphabet
+//input: string s
+//output: string
+//usage: transforimg string s into sequence of characters of the Alphabet
 string variable(string s) {
 	string res;
 	char c = 65;// Character A
@@ -103,8 +124,10 @@ string variable(string s) {
 	return res;
 }
 
-//Evaluating the quantity of characters contained in s what is different from character '-'
-int minlen(string s) {
+//input: string s
+//output: int
+//usage: Evaluating the quantity of characters contained in s what is different from character '-'
+int minLen(string s) {
 	int count = 0;
 	for (int i = 0; i < len(s); i++) {
 		if (s[i] != '-') count++;
@@ -113,8 +136,10 @@ int minlen(string s) {
 	return count;
 }
 
-// Find all of number of decimal what are transformed from string s
-vector<int> dec_(string s, int var) {//Var is the maximum quantity of variable
+//input: string s, int var
+//output: vector<int>
+//usage: Find all of number of decimal what are transformed from string s
+vector<int> decimal(string s, int var) {//Var is the maximum quantity of variable
 	char c = 65; // character A - character to estimate
 	char ch = 39;// character '
 	int idx = 0;
@@ -151,7 +176,9 @@ vector<int> dec_(string s, int var) {//Var is the maximum quantity of variable
 	return res;
 }
 
-//transforming string what have imported from user into the array of numbers
+//input: string s, int var
+//out[ut: vactor<int>
+//usage: transforming string what have imported from user into the array of numbers
 vector<int> trans(string s, int var) {//Var is the maximum quantity of variable
 	vector<int> res;
 
@@ -173,10 +200,10 @@ vector<int> trans(string s, int var) {//Var is the maximum quantity of variable
 			i++;
 
 		//adding into array
-		vector<int> arr = dec_(s1, var);
+		vector<int> arr = decimal(s1, var);
 		for (int j = 0; j < arr.size(); j++) {
 
-			add_(res, arr[j]);
+			add(res, arr[j]);
 		}
 
 	}
@@ -184,7 +211,9 @@ vector<int> trans(string s, int var) {//Var is the maximum quantity of variable
 	return res;
 }
 
-//transforming string into the array of numbers
+//input: string
+//output: vector<int>
+//usage: transforming string into the array of numbers
 vector<int> findMinTerms(string a) {
 
 	vector<int> res;
@@ -211,10 +240,10 @@ vector<int> findMinTerms(string a) {
 				//fiding the position character is '-' and replace these character by 0 or 1 sequencely from aforementioned array x
 				char c = x[j][k];
 				if (idx != -1) {
-					idx = idx + findchar(&temp[idx + 1], '-') + 1;
+					idx = idx + findChar(&temp[idx + 1], '-') + 1;
 				}
 				else {
-					idx = findchar(&temp[idx + 1], '-');
+					idx = findChar(&temp[idx + 1], '-');
 				}
 				temp[idx] = c;
 			}
