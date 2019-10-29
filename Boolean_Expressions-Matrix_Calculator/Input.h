@@ -11,8 +11,8 @@
 using namespace std;
 
 // input for boolean expression
-void input_(string& in, int& var);
-void add_(vector<int>& a, int x);
+void input(string& in, int& var);
+void add(vector<int>& a, int x);
 
 // input for math vector
 void input(vector<double>& in);

@@ -1,18 +1,18 @@
 #include "Dictionary.h"
 
-//default constructor
+//usage: default constructor
 template <class k, class v>
 Dictionary<k, v>::Dictionary()
 {
 }
 
-//destructor 
+//usage: destructor 
 template <class k, class v>
 Dictionary<k, v>::~Dictionary() {
 	value.clear();
 }
 
-//constructor
+//usage: constructor
 template <class k, class v>
 Dictionary<k, v>::Dictionary(k key, v value) {
 	this->key = key;
@@ -20,7 +20,9 @@ Dictionary<k, v>::Dictionary(k key, v value) {
 
 }
 
-//adding string into value
+//input: v value
+//output: Dictionary<k, v>&
+//usage: adding string into value
 template <class k, class v>
 Dictionary<k, v>& Dictionary<k, v>::append(v value) {
 	int count = 0;
@@ -35,6 +37,9 @@ Dictionary<k, v>& Dictionary<k, v>::append(v value) {
 
 	return *this;
 }
+
+//input: const Dictionary& other
+//output: bool
 // overloading operator <
 template <class k, class v>
 bool  Dictionary<k, v>::operator<(const Dictionary& other) {

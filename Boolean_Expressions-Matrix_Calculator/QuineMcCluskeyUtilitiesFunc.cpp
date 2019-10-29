@@ -1,7 +1,8 @@
 #include "QuineMcCluskyUtilitiesFunc.h"
 
-
-//Finding the position where element of dictionay has the determined key 
+//input: vector<Dictionary<int, string>> groups, int key
+//output: int
+//usage: Finding the position where element of dictionay has the determined key 
 int find(vector<Dictionary<int, string>> groups, int key) {
 	for (int i = 0; i < groups.size(); i++)
 	{
@@ -12,7 +13,9 @@ int find(vector<Dictionary<int, string>> groups, int key) {
 	return -1;
 }
 
-//importing string s into array of string marked
+//input: vector<string> &marked, string s
+//output: void
+//usage: importing string s into array of string marked
 void add(vector<string> &marked, string s) {
 	
 	//find whether s has remained in marked
@@ -26,19 +29,10 @@ void add(vector<string> &marked, string s) {
 	marked.push_back(s);
 	return;
 }
-//Export all elements of array out the screen
-void print(vector<Dictionary<int, string>> groups) {
-	for (int i = 0; i < groups.size(); i++) {
-		cout << groups[i].getKey() << "\t\t";//key
-		vector<string> value = groups[i].getValue();
-		for (int i = 0; i < value.size(); i++)
-			cout << value[i] << " ";//elements of value
-		cout << endl;	
-	}
-	cout << endl;
-}
 
-//Producting the array what has the elements belonging marked and not contained in tmp
+//input: vector<Dictionary<int, string>> tmp, vector<string> marked
+//output: vector<string>
+//usage: Producting the array what has the elements belonging marked and not contained in tmp
 vector<string> diffence(vector<Dictionary<int, string>> tmp, vector<string> marked) {
 	vector<string> res;//array result
 	for (int i = 0; i < tmp.size(); i++)
@@ -58,9 +52,12 @@ vector<string> diffence(vector<Dictionary<int, string>> tmp, vector<string> mark
 	return res;
 }
 
+//input: vector<string> &all,vector<string> unmarked
+//output: void
+//usage:
 // Creating array has all of element both array : all and unmarked
 // The elements belonging to both apprear one time
-void union_(vector<string> &all,vector<string> unmarked) {
+void unionArray(vector<string> &all,vector<string> unmarked) {
 
 	if (all.size() == 0) {
 		all = unmarked;
@@ -83,6 +80,9 @@ void union_(vector<string> &all,vector<string> unmarked) {
 
 }
 
+//input: vector<Dictionary<int, string>> chart
+//output: vector<string>
+//usage:
 //Creating the array of string from elements of chart which its value has one 
 // no element is repeated
 vector<string> findEssential(vector<Dictionary<int, string>> chart) {
@@ -105,8 +105,10 @@ vector<string> findEssential(vector<Dictionary<int, string>> chart) {
 	return res;
 }
 
+//input: vector<Dictionary<int, string>>&chart, vector<string> essence
+//output: void
 //all elements has key what is the same as transformed from essence will be eleminate from array chart
-void remove_(vector<Dictionary<int, string>>&chart, vector<string> essence) {
+void removeArray(vector<Dictionary<int, string>>&chart, vector<string> essence) {
 	for (int i = 0; i < essence.size(); i++) {
 		vector<int > k = findMinTerms(essence[i]);//transforming string into int
 		for (int j = 0; j < k.size(); j++) {
@@ -118,9 +120,12 @@ void remove_(vector<Dictionary<int, string>>&chart, vector<string> essence) {
 	}
 }
  
+//input: vector<Dictionary<int, string>> chart, Dictionary<string,int> &res
+//output: int
+//usage:
 //finding the string that has the appearance is the best popular in chart
 //value of res is the number of appearance of key
-int findcover(vector<Dictionary<int, string>> chart, Dictionary<string,int> &res) {
+int findCover(vector<Dictionary<int, string>> chart, Dictionary<string,int> &res) {
 	int d = chart.size();
 	string s = chart[0].getValue()[0];
 	int max = 1;// the number of appearance
@@ -155,28 +160,32 @@ int findcover(vector<Dictionary<int, string>> chart, Dictionary<string,int> &res
 	return idx;
 }
 
+//input: vector<Dictionary<int, string>> chart, int idx
+//output: vector<string>
 //Finding string has shortest special length from elements of value 
 //idx is index of the element in chart
-vector<string> findminlen(vector<Dictionary<int, string>> chart, int idx){
+vector<string> findMinLen(vector<Dictionary<int, string>> chart, int idx){
 	vector<string> res;
 	vector<string> value = chart[idx].getValue();
-	int min = minlen(value[0]);//minlen() is function to identify the special length
+	int min = minLen(value[0]);//minlen() is function to identify the special length
 	int d = value.size();
 	for (int i = 1; i < d; i++)
 	{
-		if (minlen(value[i]) < min)
-			min = minlen(value[i]);
+		if (minLen(value[i]) < min)
+			min = minLen(value[i]);
 	}
 	for (int i = 0; i < d; i++)
 	{
 		//if there are some elements has the same special length , all of them will added
-		if (minlen(value[i]) == min)
+		if (minLen(value[i]) == min)
 			res.push_back(value[i]);
 	}
 
 	return res;
 }
 
+//input: vector<vector<string>> cover,int size
+//output: vector<vector<string>>
 //Finding the most appropriate elements to cover all the rest of algorithm
 //size is size of array cover
 vector<vector<string>> recursiveCover(vector<vector<string>> cover,int size) {
@@ -212,8 +221,10 @@ vector<vector<string>> recursiveCover(vector<vector<string>> cover,int size) {
 	return res;
 }
 
+//input: vector<string> essence, vector<vector<string>> cover
+//output: vector<vector<string>>
 //Combining essence and cover to export the finally result
-vector<vector<string>> finalresult(vector<string> essence, vector<vector<string>> cover) {
+vector<vector<string>> finalResult(vector<string> essence, vector<vector<string>> cover) {
 	vector<vector<string>> res;
 	res = recursiveCover(cover, cover.size());//all elements of cover
 	for (int i = 0; i < res.size(); i++) {

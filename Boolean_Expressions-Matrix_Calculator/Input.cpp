@@ -1,7 +1,10 @@
 #include "Input.h"
 
 //Import the formula and checking
-void input_(string& in, int& var) {//var is the maximum number of variables
+// input: string& in, int& var
+// output: void
+// usage: import formular include Character begining A and character '+', there is also space to seperate
+void input(string& in, int& var) {//var is the maximum number of variables
 
 	string s = "Bieu thuc nhap bi loi";
 	cout << "Nhap so luong bien : ";
@@ -22,8 +25,10 @@ void input_(string& in, int& var) {//var is the maximum number of variables
 	}
 }
 
-// adding x into a
-void add_(vector<int>& a, int x) {
+// input: vector<int>& a, int x
+// output: void
+// usage: adding x into a
+void add(vector<int>& a, int x) {
 	for (int i = 0; i < a.size(); i++) {
 		if (a[i] == x)
 			return;
