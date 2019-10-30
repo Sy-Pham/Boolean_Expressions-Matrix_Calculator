@@ -1,5 +1,8 @@
 #include "Output.h"
 
+// input: vector<vector<string>> finalResult
+// output: void
+// usage: to print out the result of the simplification of boolean expressions
 void output(vector<vector<string>> finalResult) {
 	for (int i = 0; i < finalResult.size(); i++)
 	{

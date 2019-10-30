@@ -9,6 +9,10 @@
 extern bool exitFlag = false;
 extern bool breakSwitchFlag = false;
 
+// input: void
+// output: void
+// usage: create choosing menu for the program and process the 
+// logic for each option
 void mainOption() {
 	cout << "Chon mot chuc nang\n" << endl;
 	cout << "1 - Tim cong thuc toi tieu cua bieu thuc dai so Bool\n" << endl;
@@ -60,6 +64,10 @@ void mainOption() {
 	}
 }
 
+// input: void
+// output: void
+// usage: to process the choice of returning the menu screen
+// or exiting the program
 void mainReturnOrExit() {
 	cout << "\n------------------------------------------------------------------\n";
 	cout << "Chon chuc nang\n" << endl;
@@ -84,6 +92,10 @@ void mainReturnOrExit() {
 	}
 }
 
+// input: option
+// output: void
+// usage: to process all the choice related to perform calculation 
+// on vector 
 void mainMathVector(int option) {
 	system("cls");
 	switch (option) {
@@ -120,6 +132,10 @@ void mainMathVector(int option) {
 	mainReturnOrExit();
 }
 
+// input: int option
+// output: void
+// usage: to process all the choice related to perform calculation
+// on matrix
 void mainMatrix(int option) {
 	system("cls");
 
@@ -217,6 +233,10 @@ void mainMatrix(int option) {
 	mainReturnOrExit();
 }
 
+// input: void (because their only one option for performing calculation 
+// on Boolean expressions)
+// output: void
+// usage: to process the simplification of the boolean expressions
 void mainQuineMcCluskey()
 {
 	system("cls");
