@@ -4,6 +4,8 @@ using namespace std;
 
 MathVector::MathVector() {}
 
+// input: vector<double> src
+// usage: initialize the MathVector class from vector<double>
 MathVector::MathVector(vector<double> src)
 {
 	(this->val) = src;
@@ -13,6 +15,10 @@ MathVector::~MathVector()
 {
 }
 
+// input: const MathVector& other
+// output: MathVector&
+// usage: perform addition on 2 vector and return the 
+// object after the addition
 MathVector& MathVector::add(const MathVector& other) {
 	int sizeSrc = (this->val).size();
 	int sizeOther = (other.val).size();
@@ -30,6 +36,9 @@ MathVector& MathVector::add(const MathVector& other) {
 	return *this;
 }
 
+// input: double scalar
+// output: MathVector&
+// usage: perform multiplication on 2 vector
 MathVector& MathVector::multiply(double scalar) {
 	int size = (this->val).size();
 
@@ -40,6 +49,9 @@ MathVector& MathVector::multiply(double scalar) {
 	return *this;
 }
 
+// input: void
+// output: void
+// usage: print the value of the vector on the screen
 void MathVector::output() {
 	int size = val.size();
 
