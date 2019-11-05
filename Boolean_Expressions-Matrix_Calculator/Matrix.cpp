@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+// usage: initialize the val matrix, the lower triangle matrix L, the upper triangle matrix U
+// the rank of the matrix and the determinant
 Matrix::Matrix() {
 	val = vector<vector<double>>({ {} });
 	L = vector<vector<double>>({ {} });
@@ -10,6 +12,9 @@ Matrix::Matrix() {
 	det = FLT_MIN;
 }
 
+// input: vector<vector<double>> src
+// usage: initialize the val matrix, the lower triangle matrix L, the upper triangle matrix U
+// the rank of the matrix and the determinant
 Matrix::Matrix(vector<vector<double>> src) {
 	val = src;
 	L = vector<vector<double>>({ {} });
@@ -18,6 +23,9 @@ Matrix::Matrix(vector<vector<double>> src) {
 	det = FLT_MIN;
 }
 
+// input: const Matrix& other
+// usage: copy the val matrix, the lower triangle matrix L, the upeer triangle matrix U
+// the rank of the matrix and the determinant
 Matrix::Matrix(const Matrix& other) {
 	val = other.val;
 	L = other.L;
@@ -28,22 +36,24 @@ Matrix::Matrix(const Matrix& other) {
 
 Matrix::~Matrix() {}
 
-// input: khong
-// output: gia tri dinh thuc cua ma tran vuong
-// 
+// input: void
+// output: the determinant value
+// usage: to calculate the determinant of the square matrix
 double Matrix::determinant() {
+	// check if the determinant have been calculated before
+	// if so return the existing value
 	if (det > FLT_MIN)
 		return det;
 
 	int rowSrc = val.size();
 	int colSrc = val[0].size();
 
-	// kiem tra ma tran vuong
+	// check for square matrix
 	if (rowSrc != colSrc) {
 		throw string("Khong the tinh dinh thuc vi ma tran khong vuong");
 	}
 
-	// thuat toan crout - ung dung LU decomposition - tham khao: Wikipedia
+	// crout algorithm - LU decomposition - Reference: Wikipedia
 	int i, j, k, n = rowSrc;
 	double sum = 0;
 
@@ -54,9 +64,6 @@ double Matrix::determinant() {
 		cout << "Loi: " << e << endl;
 	}
 
-	// A = LU => det(A) = det(L) * det(U)
-	// ma det(U) = 1 vi duong cheo chinh cua U toan so 1
-	// => det(A) = det(L)
 	double detL = 1;
 	for (i = 0; i < n; i++) {
 		detL *= L[i][i];
@@ -64,15 +71,19 @@ double Matrix::determinant() {
 	return detL;
 }
 
+// input: void
+// output: const Matrix
+// usage: create a new transpose matrix of the original matrix
 const Matrix Matrix::transpose() {
 	int rowSrc = val.size();
 	int colSrc = val[0].size();
 
-	// ma tran chuyen vi co so cot = so hang ban dau va so hang = so cot ban dau
+	// the transpose matrix has numbers of original matrix column as its numbers of rows
+	// and numbers of original matrix rows as its numbers of columns
 	vector<double> tempCol(rowSrc, 0);
 	vector<vector<double>> tempRow(colSrc, tempCol);
 
-	// copy tu mang hai chieu val qua tempRow
+	// make a copy from the val matrix
 	for (int i = 0; i < rowSrc; i++) {
 		for (int j = 0; j < colSrc; j++) {
 			tempRow[j][i] = val[i][j];
@@ -83,41 +94,44 @@ const Matrix Matrix::transpose() {
 	return result;
 }
 
-// cach lam la dung LU decompostion giong trong crout algorithm 
-// tim nghich dao cua hai ma tran L va U roi nhan ca hai lai voi nhau
+// input: void
+// output: an inverse matrix of the original
+// usage: use the LU decomposition like in the crout algorithm
+// find the inverse of both the L matrix and the U matrix and multiply the two matrix together
 const Matrix Matrix::inverse() {
 	int rowSrc = val.size();
 	int colSrc = val[0].size();
 
-	// kiem tra ma tran vuong
+	// check if the matrix is a square matrix
 	if (rowSrc != colSrc) {
 		throw string("Khong the tinh dinh thuc vi ma tran khong vuong");
 	}
 
-	// kiem tra ma tran co ton tai ma tran nghich dao khong
+	// check if the matrix has a non-zero determinant
 	if ((this->determinant() == 0)) {
 		throw string("Ma tran khong co ma tran nghich dao");
 	}
 
-	// i, j, k la cac bien dem, n la bien giu chieu dai canh cua ma tran vuong
+	// n is the variable that holds the row's size of the matrix
 	int n = rowSrc;
 	double sum = 0;
 
-	// thuat toan LUDEcomposition
+	// LU Decomposition
 	LUDecomposition(val, L, U);
 
-	// su dung back subsitution de tim nghich dao cua ma tran L va U
-	// back subsitution la phep the tung phuong trinh de giai ma tran tam giac
+	// using back subsitution to find the inverse of the matrix L and U
+	// back subsitution is a subsituting each of the equations to solve the triangle matrix
 	vector<double> temp(n, 0);
 	vector<vector<double>> backSubL(n, temp);
 	vector<vector<double>> backSubU(n, temp);
 	vector<vector<double>> unitMatrix(n, temp);
 
+	// initialize a unit matrix
 	for (int i = 0; i < n; i++) {
 		unitMatrix[i][i] = 1;
 	}
 
-	// bien j de chay tung cot cua ma tran nghich dao can tim cho ma tran L
+	// j is an index for each of the column of the result matrix we need to find
 	for (int j = 0; j < n; j++) {
 		for (int i = 0; i < n; i++) {
 			sum = 0;
@@ -130,7 +144,6 @@ const Matrix Matrix::inverse() {
 		}
 	}
 
-	// bien j de chay tung cot cua ma tran nghich dao can tim cho  ma tran U
 	for (int j = 0; j < n; j++) {
 		for (int i = n - 1; i >= 0; i--) {
 			sum = 0;
@@ -148,21 +161,25 @@ const Matrix Matrix::inverse() {
 	return result2.multiply(result);
 }
 
+// input: const Matrix& other
+// output: const Matrix
+// usage: return the product of two matrix
 const Matrix Matrix::multiply(const Matrix& other) {
 	int rowSrc = (this->val).size();
 	int colSrc = (this->val)[0].size();
 	int rowOther = (other.val).size();
 	int colOther = (other.val)[0].size();
 
-	// khoi tao mang hai chieu bang vector, voi kich co row = rowSrc, col = colOther
+	// initialize a 2 dimensional vector, with row = rowSrc, col = colSrc
 	vector<double> temp(colOther, 0);
 	vector<vector<double>> result(rowSrc, temp);
 
-	// kiem tra dieu kien thuc hien duoc phep nhan hai ma tran
+	// check if the two matrix can be multiplied
 	if (colSrc != rowOther) {
 		throw string("Khong the thuc hien phep nhan hai ma tran");
 	}
 
+	// multiply the matrix by each of the row and column
 	for (int i = 0; i < rowSrc; i++) {
 		for (int j = 0; j < colOther; j++) {
 			double temp = 0;
@@ -177,7 +194,13 @@ const Matrix Matrix::multiply(const Matrix& other) {
 	return matrixResult;
 }
 
+// input: void
+// output: the rank value of the matrix
+// usage: use the gausse elimination to reduce the matrix and 
+// then count the non-zero row and return the value
 int Matrix::rank() {
+	// check if the rankValue have been calculated before
+	// if so return the existing value
 	if (rankValue != -1)
 		return rankValue;
 
@@ -205,21 +228,40 @@ int Matrix::rank() {
 	return rankValue;
 }
 
+// input: vector<vector<double>>& augmentValue
+// output: const Matrix
+// usage: solve the system of equations which has the numbers of variable
+// equal to the number of equations.
 const Matrix Matrix::solve(vector<vector<double>>& augmentValue) {
+	// initialize a coefficient matrix
 	Matrix coeffMatrix(*this);
 	Matrix result;
+
+	// initialize the right hand matrix
+	// example
+	// x + 2y = 2
+	// 3x + y = 1
+	// [[2],[1]] is the rightHandMatrix
+	// [[1, 2], [3, 1]] is the coefficient matrix
+	// [[1,2, 2], [3, 1, 1]] is the augmented matrix
 	Matrix rightHandMatrix(augmentValue);
 
 	vector<vector<double>> temp(val);
 
+	// create an augmented matrix
 	for (int i = 0; i < augmentValue.size(); i++) {
 		temp[i].push_back(augmentValue[i][0]);
 	}
 
 	Matrix augmentMatrix(temp);
+
+	// calculate the rank of the coefficient matrix
 	int coeffMatrixRank = coeffMatrix.rank();
+
+	// calculate the rank of the coefficient matrix
 	int augmentMatrixRank = augmentMatrix.rank();
 
+	// compare the rank of the coefficient matrix and the augment matrix
 	if (coeffMatrixRank < augmentMatrixRank) {
 		throw string("He phuong trinh da cho vo nghiem");
 	}
@@ -227,13 +269,19 @@ const Matrix Matrix::solve(vector<vector<double>>& augmentValue) {
 		throw string("He phuong trinh da cho co vo so nghiem");
 	}
 	else {
+		// inverse the coefficient matrix
 		result = coeffMatrix.inverse();
+
+		// and multiply it with the right hand matrix
 		result = result.multiply(rightHandMatrix);
 	}
 
 	return result;
 }
 
+// input: void
+// output: void
+// usage: output the Matrix to screen
 void Matrix::output() {
 	int dimensionX = val.size();
 	int dimensionY = val[0].size();
@@ -261,6 +309,10 @@ void Matrix::output() {
 	cout << ")";
 }
 
+// input: vector<vector<double>> A, vector<vector<double>>& L, vector<vector<double>>& U
+// output: void
+// usage: decompose the given square matrix A into 2 triangle matrix:
+// the lower triangle matrix L and the upper triangle matrix U
 void LUDecomposition(vector<vector<double>> A, vector<vector<double>> &L, vector<vector<double >> &U) {
 	if (L.size() > 1 && U.size() > 1)
 		return;
@@ -274,28 +326,30 @@ void LUDecomposition(vector<vector<double>> A, vector<vector<double>> &L, vector
 	int n = A.size();
 	
 	for (j = 0; j < n; j++) {
-
-		// o vong lap nay thi bien i la dong cua L
-		// bien j la cot cua U
-		// vong lap nay de tinh cac thanh phan cua L
+		
+		// in this loop, the i variable is the row of L
+		// j is the column of U
+		// this loop is used to calculate the member of L
 		for (i = 0; i < n; i++) {
 			sum = 0;
 
-			// tim tich cua hang i cua L va cot j cua U
+			// find the product of the i-th row of L with the j-th column of U
 			for (k = 0; k < j; k++) {
 				sum = sum + L[i][k] * U[k][j];
 			}
 			L[i][j] = A[i][j] - sum;
 		}
 
-		// o vong lap nay thi bien j la dong cua L
-		// bien i la cot cua U
-		// vong lap nay de tinh cac thanh phan cua U
+		// in this loop, the j variable is the row of L
+		// i is the column of U
+		// this loop is used to calculate the member of U
 		for (i = 0; i < n; i++) {
 			sum = 0;
 			for (k = 0; k < j; k++) {
 				sum = sum + L[j][k] * U[k][i];
 			}
+			// if there are a member in the diagonal line of the lower matrix L
+			// has the value 0 then throw errror
 			if (L[j][j] == 0) {
 				throw string("Ma tran co dinh thuc bang 0");
 			}
@@ -304,6 +358,9 @@ void LUDecomposition(vector<vector<double>> A, vector<vector<double>> &L, vector
 	}
 }
 
+// input: const vector<vector<double>> src
+// output: const vector<vector<double>>
+// usage: reduce the matrix src to echelon form
 const vector<vector<double>> gaussElimination(const vector<vector<double>>& src) {
 	vector<vector<double>> result = src;
 	int row = result.size();
